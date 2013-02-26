@@ -1,0 +1,4 @@
+= div_for group do
+  = link_to group.name, [:admin, group]
+  = link_to '编辑', edit_admin_group_path(group)
+  = link_to '删除', [:admin, group], method: :delete, remote: true, confirm: '确定删除该组？'

@@ -1,0 +1,39 @@
+# -*- encoding : utf-8 -*-
+class PasswordResetsController < ApplicationController  
+  def new
+    @user = User.new
+  end
+  
+  def create
+    @user = User.new(params[:user])
+    user = User.where(email: @user.email).first
+    if user
+      user.delay.send_password_reset_email
+      redirect_to root_path, notice: '密码重置邮件已经发送！'
+    else
+      @user.errors.add(:email, '无法核实您的邮箱地址，请确认是否用该邮件地址注册！')
+      flash.now[:error] = '发生错误！'
+      render 'new'
+    end
+  end
+  
+  def edit
+    @user = User.where(password_reset_token: params[:id]).first
+    redirect_to root_path unless @user
+  end
+  
+  def update
+    @user = User.where(password_reset_token: params[:user].delete(:password_reset_token)).first
+    if @user && @user.can_reset_password?
+      @user.assign_attributes(params[:user])
+      if @user.save
+        redirect_to root_path, notice: '密码重置成功！请用新密码登陆'
+      else
+        flash.now[:error] = '发生错误！'
+        render 'edit'
+      end
+    else
+      redirect_to root_path, notice: '密码重置时间过期发生错误或发生错误，请重新申请发送重置密码邮件！'
+    end
+  end
+end

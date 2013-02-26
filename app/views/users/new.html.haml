@@ -1,0 +1,9 @@
+#register_form.well
+  %h2.center 注册
+  = simple_form_for @user, html: { class: 'form-horizontal' } do |f|
+    = f.input :name
+    = f.input :email
+    = f.input :password
+    = f.input :password_confirmation
+    = f.input :captcha, label: '验证码', hint: captcha_tag if captcha_on?
+    .form-actions= f.submit '注册', class: 'btn btn-large btn-primary'

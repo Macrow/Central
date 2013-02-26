@@ -1,0 +1,6 @@
+= simple_form_for [:admin, @group], html: { class: 'form-horizontal' } do |f|
+  = f.input :name
+  = f.input :description, input_html: { class: 'span4', rows: '8' }
+  .form-actions
+    = f.submit class: 'btn btn-primary'
+    = link_to_function '返回', 'history.go(-1);', class: 'btn'

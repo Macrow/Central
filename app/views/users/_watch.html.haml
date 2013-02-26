@@ -1,0 +1,4 @@
+- if current_user.watching?(watch)
+  = link_to '取消关注', relationship_path(id: watch), class: 'btn btn-danger btn-block', method: 'delete', remote: true
+- else
+  = link_to '关注', relationships_path(id: watch), class: 'btn btn-info btn-block', method: 'post', remote: true

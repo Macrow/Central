@@ -1,0 +1,5 @@
+.group_operation_tools
+  = form_tag url, id: 'group_operation_form', method: 'delete', remote: true do
+    = hidden_field_tag :submit_ids
+    = link_to '删除所选', '#', class: 'group_operation_submit_button'
+    = content_tag :span, '', class: 'badge badge-info'

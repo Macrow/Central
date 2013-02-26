@@ -1,0 +1,7 @@
+= simple_form_for [:admin, @notification], html: { class: 'form-horizontal' } do |f|
+  = f.input :receiver_names, input_html: { class: 'span4' }, hint: '（支持多人，名称用空格隔开即可）'
+  = f.input :send_to_all, as: :boolean, label: '发送给所有人'
+  = f.input :content, input_html: { class: 'span4', rows: '8' }
+  .form-actions
+    = f.submit '发送', class: 'btn btn-primary'
+    = link_to_function '返回', 'history.go(-1);', class: 'btn'

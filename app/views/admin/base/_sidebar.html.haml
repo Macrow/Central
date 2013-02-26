@@ -1,0 +1,11 @@
+%h4 快捷链接
+.tabbable.tabs-left
+  %ul.nav.nav-tabs
+    = tab_link_to '新建用户', new_admin_user_path, 'users', 'new create'
+    = tab_link_to '新建分组', new_admin_group_path, 'groups', 'new create'
+    = tab_link_to '新建标签', new_admin_tag_path, 'tags', 'new create'
+    = tab_link_to '新建短信', new_admin_message_path, 'messages', 'new create'
+    = tab_link_to '新建提醒', new_admin_notification_path, 'notifications', 'new create'
+    = tab_link_to '管理员列表', admins_admin_users_path, 'users', 'admins'
+    = tab_link_to '发放积分', new_admin_score_path, 'scores', 'new create'
+    = tab_link_to '重置积分', reset_admin_scores_path, 'scores', 'reset do_reset'

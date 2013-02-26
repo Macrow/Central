@@ -1,0 +1,9 @@
+= link_to_function '返回', 'history.go(-1);', class: 'btn'
+.center
+  %h3= @message.title
+  .message_info
+    = "发件人：#{link_to @message.sender.name, @message.sender}".html_safe
+    = "收件人：#{link_to @message.receiver.name, @message.receiver}".html_safe
+    = "发送时间：#{@message.created_at.to_s(:db)}"
+.well= simple_format @message.content
+.pull-right= link_to '回复短信', new_message_path(receiver_name: @message.sender.name), class: 'btn btn-info' if @message.inbox?

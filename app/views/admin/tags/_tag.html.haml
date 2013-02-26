@@ -1,0 +1,8 @@
+%div.inline{id: "tag_#{tag.id}"}
+  %div{class: "tag_info #{'tag_used' if tag.tagged}"}
+    = link_to tag.name, [:admin, tag], class: "btn #{'btn-info' if tag.tagged}"
+    - if tag.tagged
+      = '×'
+      = User.tagged_with(tag.name).count
+      %br
+    .center.tag_edit.hide= link_to content_tag(:span, '删除', class: 'label label-important'), [:admin, tag], method: 'delete', remote: true, confirm: '确认删除？'

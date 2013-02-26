@@ -1,0 +1,8 @@
+= simple_form_for current_user, url: profile_path, method: 'put' do |f|
+  %h4 我的标签
+  #user_tags= render partial: 'tag', collection: current_user.tag_names
+  %hr
+  %h4 可用标签
+  #list_tags= render partial: 'tag', collection: @tags
+  = f.input :tag_text, as: 'hidden'
+  .form-actions= f.submit '更新我的标签', class: 'btn btn-primary'

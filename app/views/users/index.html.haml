@@ -1,0 +1,9 @@
+%h4 在线用户列表
+#online_users
+  - active_users.each do |user|
+    = render partial: 'profiles/user', object: user
+%hr
+%h4.all_users_header 所有用户列表
+#loading Loading...
+#all_users
+  .show_link= link_to_function '加载', "show_all_users();"

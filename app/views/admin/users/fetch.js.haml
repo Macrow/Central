@@ -1,0 +1,4 @@
+$('span.receivers').html('收件人：共#{@users.length}人');
+$('#all_receivers').append('#{content_tag(:div, '', class: 'well', id: 'receivers_well')}');
+- @users.each do |user|
+  $('#receivers_well').append('#{j render(partial: 'profiles/user', object: user)}');

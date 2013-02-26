@@ -1,0 +1,3 @@
+$('.all_users_header').append('（#{@users.length}）');
+- @users.each do |user|
+  $('#all_users').append('#{j(render partial: 'profiles/user', object: user)}');

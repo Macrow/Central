@@ -1,0 +1,35 @@
+= simple_form_for [:admin, @user], html: { class: 'form-horizontal' } do |f|
+  %ul.nav.nav-tabs
+    %li.active= link_to '认证密码', '#tab1', data: { toggle: 'tab' }
+    %li= link_to '管理员设置', '#tab2', data: { toggle: 'tab' }
+    %li= link_to '基本资料', '#tab3', data: { toggle: 'tab' }
+    %li= link_to '积分与分组', '#tab4', data: { toggle: 'tab' }
+    %li= link_to '标签', '#tab5', data: { toggle: 'tab' }
+  .tab-content
+    #tab1.tab-pane.active
+      = f.input :name, disabled: (!@user.new_record?)
+      = f.input :email, disabled: (!@user.new_record?)
+      = f.input :password
+      = f.input :password_confirmation
+    #tab2.tab-pane
+      = f.input :admin
+    #tab3.tab-pane
+      = f.input :sex, as: 'radio_buttons', collection: User::SEX
+      = f.input :birthday, as: 'string'
+      = f.input :location, as: 'select', collection: ChineseCities::Province.all_names, input_html: { class: 'chzn-select' }
+      = f.input :home_url
+      = f.input :sign
+      = f.input :description, as: 'text', input_html: { class: 'span4', rows: '8' }
+    #tab4.tab-pane
+      = f.association :groups, collection: @groups, input_html: { class: 'chzn-select' }
+      = f.input :score
+    #tab5.tab-pane
+      %h4 用户标签
+      #user_tags= render partial: 'profiles/tag', collection: @user.tag_names
+      %hr
+      %h4 可用标签
+      #list_tags= render partial: 'profiles/tag', collection: @tags
+      = f.input :tag_text, as: 'hidden'
+  .form-actions
+    = f.submit class: 'btn btn-primary'
+    = link_to_function '返回', 'history.go(-1);', class: 'btn'

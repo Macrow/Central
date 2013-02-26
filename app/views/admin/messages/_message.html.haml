@@ -1,0 +1,8 @@
+= div_for message do
+  = link_to message.title, [:admin, message]
+  = message.status
+  = link_to message.sender.name, [:admin, message.sender] if message.sender
+  - message.receivers.each do |receiver|
+    = link_to receiver.name, [:admin, receiver]
+  = link_to '编辑', edit_admin_message_path(message)
+  = link_to '删除', [:admin, message], method: :delete, remote: true, confirm: '确定删除该短信？'

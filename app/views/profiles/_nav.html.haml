@@ -1,0 +1,16 @@
+%ul.nav.nav-tabs
+  = tab_link_to '关注列表', profile_path, 'profiles', 'show'
+  = tab_link_to '个性标签', tags_path, 'profiles', 'tags'
+  = tab_link_to '基本资料', edit_profile_path, 'profiles', 'edit'
+  = tab_link_to '个人头像', edit_avatar_path, 'profiles', 'edit_avatar update_avatar'
+  = tab_link_to '裁剪头像', crop_avatar_path, 'profiles', 'crop_avatar' if current_user.avatar.url.present?
+  = tab_link_to '修改密码', edit_password_path, 'profiles', 'edit_password update_password'
+  = dropdown_link '站内短信', 'messages', 'new create index show outbox unread' do
+    %li= link_to '新建短信', new_message_path
+    - if unread_messages_count > 0
+      %li#unread_messages= link_to ('未读短信 ' + badge_icon(unread_messages_count)).html_safe, unread_messages_path
+    %li= link_to '收件箱', messages_path
+    %li= link_to '发件箱', outbox_messages_path
+  = dropdown_link '站内提醒', 'notifications', 'index unread' do
+    %li= link_to "未读提醒 #{badge_icon(unread_notifications_count)}".html_safe, unread_notifications_path
+    %li= link_to '已读提醒', notifications_path

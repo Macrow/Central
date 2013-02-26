@@ -1,0 +1,29 @@
+%h3 提醒列表
+#search_form
+  = search_form_for @q, url: admin_notifications_path, html: {class: 'form-search'} do |f|
+    .input-append
+      = f.text_field :content_cont, class: 'search-query', placeholder: '输入提醒内容'
+      = f.submit '搜索', class: 'btn'
+= render partial: 'shared/group_operation_tools', locals: { url: group_destroy_admin_notifications_path }
+- if @notifications.length > 0
+  %table.table
+    %thead
+      %tr
+        %th= check_box_tag :group_operation
+        %th.count #
+        %th 拥有人
+        %th= sort_link(@q, :created_at, '发送时间')
+        %th 内容
+        %th 操作
+    %tbody
+      - @notifications.each_with_index do |notification, index|
+        %tr{id: "notification_#{notification.id}", class: 'notification'}
+          %td.group_operation= check_box_tag "thread_checkbox", notification.id
+          %td= index + 1 + current_page
+          %td= link_to notification.user.name, [:admin, notification.user]
+          %td= notification.created_at.to_s(:db)
+          %td= simple_format notification.content
+          %td= link_to '删除', [:admin, notification], method: :delete, remote: true, confirm: '确定删除？'
+  .pagination= will_paginate @notifications
+- else
+  .no_content 无内容

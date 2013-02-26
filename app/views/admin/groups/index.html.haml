@@ -1,0 +1,26 @@
+%h3 用户组列表
+#search_form
+  = search_form_for @q, url: admin_groups_path, html: {class: 'form-search'} do |f|
+    .input-append
+      = f.text_field :name_cont, class: 'search-query', placeholder: '输入用户组名'
+      = f.submit '搜索', class: 'btn'
+- if @groups.length > 0
+  %table.table
+    %thead
+      %tr
+        %th.count #
+        %th= sort_link(@q, :name)
+        %th 用户数量
+        %th 操作
+    %tbody
+      - @groups.each_with_index do |group, index|
+        %tr{id: "group_#{group.id}", class: 'group'}
+          %td= index + 1 + current_page
+          %td= link_to group.name, [:admin, group]
+          %td= group.users.count
+          %td
+            = link_to '编辑', edit_admin_group_path(group)
+            = link_to '删除', [:admin, group], method: :delete, remote: true, confirm: '确定删除？'
+  .pagination= will_paginate @groups
+- else
+  .no_content 无内容

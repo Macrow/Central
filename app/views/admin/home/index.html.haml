@@ -1,0 +1,7 @@
+%h3 数据统计
+%ul.staticstic
+  %li= "注册用户共计 #{badge_icon(@users_count)} 名".html_safe
+  %li= "用户分组共计 #{badge_icon(@groups_count)} 个".html_safe
+  %li= "站内短信共计 #{badge_icon(@messages_count)} 条".html_safe
+  %li= "站内提醒共计 #{badge_icon(@unread_nitofications_count)} 条".html_safe
+  %li= "标签共计 #{badge_icon(@tags_count)} 个".html_safe

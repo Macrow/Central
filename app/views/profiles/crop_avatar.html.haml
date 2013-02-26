@@ -1,0 +1,24 @@
+.row
+  .span4
+    %h4 之前的头像
+    #avatar_old
+      #max= image_tag(current_user.avatar.url(:max))
+      #mid= image_tag(current_user.avatar.url(:mid))
+      #min= image_tag(current_user.avatar.url(:min))
+  .span4
+    %h4 裁剪后的头像
+    #avatar_preview
+      #max= image_tag(current_user.avatar.url, id: 'max_preview')
+      #mid= image_tag(current_user.avatar.url, id: 'mid_preview')
+      #min= image_tag(current_user.avatar.url, id: 'min_preview')
+%hr
+= image_tag(current_user.avatar.url, id: 'cropbox')
+= simple_form_for current_user, url: update_avatar_path, html: { id: 'coords', class: 'form-horizontal' } do |f|
+  = f.input :crop_x, as: 'hidden'
+  = f.input :crop_y, as: 'hidden'
+  = f.input :crop_w, as: 'hidden'
+  = f.input :crop_h, as: 'hidden'
+  = hidden_field_tag :cropping_avatar, true
+  .form-actions= f.submit '裁剪', class: 'btn btn-primary btn-large'
+
+

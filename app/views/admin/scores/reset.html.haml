@@ -1,0 +1,8 @@
+%h3 将指定用户积分重置
+= simple_form_for [:admin, @score], html: { class: 'form-horizontal' }, url: do_reset_admin_scores_path, method: 'put' do |f|
+  = f.input :receiver_names, input_html: { class: 'span4' }, hint: '（支持多人，名称用空格隔开即可）'
+  = f.input :send_to_all, as: :boolean, label: '发送给所有人'
+  = f.input :score
+  .form-actions
+    = f.submit '重置', class: 'btn btn-danger'
+    = link_to_function '返回', 'history.go(-1);', class: 'btn'

@@ -1,0 +1,5 @@
+$('input:checkbox#group_operation').attr('checked', false);
+$('.group_operation_tools').hide();
+- @ids.each do |id|
+  $('#message_#{id}').fadeOut();
+$('#flash').html(flash_html('notice', '注意', '成功删除 #{@ids.count} 条消息！'));

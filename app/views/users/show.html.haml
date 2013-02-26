@@ -1,0 +1,7 @@
+.row
+  .span4
+    = render partial: 'profiles/card', locals: { user: @user, tags: @user.tag_names }
+    #buttons
+      - if current_user && current_user != @user
+        .watching_button= render partial: 'watch', object: @user
+        .message_button= link_to '发送站内短信', new_message_path(receiver_name: @user.name), class: 'btn btn-warning btn-block'

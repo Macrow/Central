@@ -1,0 +1,14 @@
+%li.dropdown
+  %a{'href' => '#', 'class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
+    = user_name_and_notification(current_user)
+    %b.caret
+  %ul.dropdown-menu
+    %li= link_to '个人首页', profile_path
+    - if unread_notifications_count > 0
+      %li#notifications= link_to ('未读提醒 ' + badge_icon(unread_notifications_count)).html_safe, unread_notifications_path
+    - if unread_messages_count > 0
+      %li#messages= link_to ('未读短信 ' + badge_icon(unread_messages_count)).html_safe, unread_messages_path
+    %li= link_to '更改头像', edit_avatar_path
+    %li= link_to '站内短信', messages_path
+    %li= link_to '站内提醒', notifications_path
+    %li= link_to '修改密码', edit_password_path

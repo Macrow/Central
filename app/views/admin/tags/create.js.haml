@@ -1,0 +1,12 @@
+- if @tag.valid?
+  $('#list_tags').append('#{j render @tag}');
+  $('form#new_tag')[0].reset();
+  $('.control-group').removeClass('error');
+  $('span.help-inline').remove();
+  $('#flash').html(flash_html('notice', '注意', '添加成功！'));
+- else
+  $('.control-group').addClass('error');
+  $('span.help-inline').remove();
+  $('#tag_name').closest('.controls').append('#{content_tag(:span, @tag.errors.get(:name).first, class: 'help-inline')}');
+  $('#flash').html(flash_html('error', '错误', '发生错误！'));
+  

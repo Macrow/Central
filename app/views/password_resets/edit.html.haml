@@ -1,0 +1,7 @@
+#login_form.well
+  %h2.center 重置密码
+  = simple_form_for @user, url: password_reset_path, method: 'put', html: { class: 'form-horizontal' } do |f|
+    = f.input :password
+    = f.input :password_confirmation
+    = f.input :password_reset_token, as: 'hidden'
+    .form-actions= f.submit '重置密码', class: 'btn btn-large btn-danger'

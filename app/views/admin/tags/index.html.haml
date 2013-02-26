@@ -1,0 +1,6 @@
+%h3 标签列表
+%h5 说明：标签按名称排序，蓝色为已使用标签，点击可查看用户列表
+.edit_tools
+  .inline= check_box_tag :tag_edit
+  .inline= label_tag :tag_edit, '切换编辑模式'
+#all_tags= render @tags

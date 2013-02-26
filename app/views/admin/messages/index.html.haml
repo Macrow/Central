@@ -1,0 +1,37 @@
+%h3 短信列表
+#search_form
+  = search_form_for @q, url: admin_messages_path, html: {class: 'form-search'} do |f|
+    .input-append
+      = f.text_field :title_or_content_cont, class: 'search-query', placeholder: '输入短信标题或内容'
+      = f.submit '搜索', class: 'btn'
+= render partial: 'shared/group_operation_tools', locals: { url: group_destroy_admin_messages_path }
+- if @messages.length > 0
+  %table.table
+    %thead
+      %tr
+        %th= check_box_tag :group_operation
+        %th.count #
+        %th= sort_link(@q, :inbox, '类型')
+        %th= sort_link(@q, :title)
+        %th= sort_link(@q, :sender, '发件人')
+        %th= sort_link(@q, :created_at, '发送时间')
+        %th 收件人
+        %th 操作
+    %tbody
+      - @messages.each_with_index do |message, index|
+        %tr{id: "message_#{message.id}", class: 'message'}
+          %td.group_operation= check_box_tag "thread_checkbox", message.id
+          %td= index + 1 + current_page
+          %td= content_tag(:span, message.inbox? ? '收件' : '发件', class: "label #{'label-info' unless message.inbox?}")
+          %td= link_to message.title, [:admin, message]
+          %td= display_user_link(message.sender, admin: true)
+          %td= message.created_at.to_s(:db)
+          %td
+            - if message.receiver_ids_string.include?(',') # group send
+              = content_tag(:span, '群发', class: 'label label-important')
+            - else
+              = display_user_link(message.receiver, admin: true)
+          %td= link_to '删除', [:admin, message], method: :delete, remote: true, confirm: '确定删除？'
+  .pagination= will_paginate @messages
+- else
+  .no_content 无内容

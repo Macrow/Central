@@ -1,0 +1,9 @@
+= simple_form_for current_user, html: { class: 'form-horizontal' }, url: profile_path, method: 'put' do |f|
+  = f.input :sex, as: 'radio_buttons', collection: User::SEX
+  = f.input :birthday, as: 'string'
+  = f.input :location, as: 'select', collection: ChineseCities::Province.all_names, input_html: { class: 'chzn-select' }
+  = f.input :home_url, input_html: { class: 'span4' }
+  = f.input :sign, input_html: { class: 'span4' }
+  = f.input :description, as: 'text', input_html: { class: 'span4', rows: '8' }
+  = f.input :tag_text, as: 'hidden'
+  .form-actions= f.submit '更新', class: 'btn btn-primary'

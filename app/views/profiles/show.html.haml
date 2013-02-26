@@ -1,0 +1,5 @@
+%h4 我所关注的人
+#watchings= render partial: 'user', collection: current_user.watchings
+%hr
+%h4 关注我的人
+#watchers= render partial: 'user', collection: current_user.watchers

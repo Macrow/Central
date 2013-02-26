@@ -1,0 +1,31 @@
+= render partial: 'shared/group_operation_tools', locals: { url: group_destroy_messages_path }
+- if @messages.length > 0
+  %table.table
+    %thead
+      %tr
+        %th= check_box_tag :group_operation
+        %th.count #
+        %th
+        %th 题目
+        %th= @messages.first.inbox? ? '发件人' : '收件人'
+        %th 发送时间
+        %th 操作
+    %tbody
+      - @messages.each_with_index do |message, index|
+        %tr{:id => "message_#{message.id}", :class => "message"}
+          %td.group_operation= check_box_tag "thread_checkbox", message.id
+          %td= index + 1 + current_page
+          %td.unread= "#{content_tag(:span, '未读', class: 'label label-info') unless message.read}".html_safe if message.inbox?
+          %td.title_url
+            %div{:id => "title_url_#{message.id}"}= link_to message.title, message
+          %td
+            - if message.inbox?
+              = display_user_link(message.sender)
+            - else
+              = display_user_link(message.receiver)
+          %td= message.created_at.to_s(:db)
+          %td
+            = link_to '删除', message, method: :delete, remote: true, confirm: '确定删除该提醒？'
+  .pagination= will_paginate @messages
+- else
+  .no_content 无内容

@@ -1,0 +1,24 @@
+.well
+  %table.profile
+    %tr
+      %td.avatar{'rowspan' => '3'}= image_tag user.avatar_url(:max), class: 'img-polaroid'
+      %td.value= content_tag :h3, user.name
+    %tr
+      %td= mail_to user.email
+    %tr
+      %td= link_to user.home_url, user.home_url if user.home_url
+    %tr
+      %td.key 性别
+      %td.value= user.sex
+    %tr
+      %td.key 来自
+      %td.value= user.location
+    %tr
+      %td.key 签名
+      %td.value= user.sign
+    %tr
+      %td.key 用户组
+      %td.value.tags= display_labels(user.groups.map(&:name))
+    %tr
+      %td.key 标签
+      %td.value.tags= display_labels(tags.map(&:name))

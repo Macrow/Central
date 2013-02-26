@@ -1,0 +1,7 @@
+%h3 创建新标签
+= simple_form_for [:admin, @tag], html: { class: 'form-horizontal' }, remote: true do |f|
+  = f.input :name
+  .form-actions
+    = f.submit class: 'btn btn-primary'
+    = link_to_function '返回', 'history.go(-1);', class: 'btn'
+#list_tags
