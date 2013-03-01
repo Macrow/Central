@@ -38,6 +38,6 @@ class UsersController < ApplicationController
   private
   
   def send_sign_up_email
-    Settings.send_register_email.to_i == 1 ? true : false
+    Settings.send_register_email == 1
   end
 end

@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
   end
   
   def per_page_count
-    Settings.per_page_count.to_i == 0 ? 10 : Settings.per_page_count.to_i
+    Settings.per_page_count.to_i
   end
   
   private
@@ -59,8 +59,8 @@ class ApplicationController < ActionController::Base
   end
   
   def captcha_on?
-    captcha_on = Settings.captcha_on.to_i == 1 ? true : false
-    fail_count = Settings.fail_count.to_i == 0 ? 5 : Settings.fail_count.to_i
+    captcha_on = Settings.captcha_on == 1 ? true : false
+    fail_count = Settings.fail_count
     captcha_on || (session[:fail_count] || 0) >= fail_count
   end
   

@@ -22,7 +22,6 @@ gem 'will_paginate'
 gem 'real_settings'
 gem 'validates_email_format_of'
 gem 'delayed_job_active_record'
-# gem 'delayed_job_web'
 
 # omniauth
 gem 'omniauth-github'

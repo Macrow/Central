@@ -39,14 +39,14 @@ class SessionsController < ApplicationController
   private
   
   def github_on
-    Settings.sign_in_with_github.to_i == 1 ? true : false
+    Settings.sign_in_with_github == 1
   end
   
   def qq_on
-    Settings.sign_in_with_qq.to_i == 1 ? true : false
+    Settings.sign_in_with_qq == 1
   end
   
   def weibo_on
-    Settings.sign_in_with_weibo.to_i == 1 ? true : false
+    Settings.sign_in_with_weibo == 1
   end  
 end

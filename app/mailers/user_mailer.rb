@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class UserMailer < ActionMailer::Base
-  default from: Settings.admin_email || "from@example.com"
+  default from: Settings.admin_email
 
   def register_confirmation(user)
     @user = user
