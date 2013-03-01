@@ -1,4 +1,4 @@
-#Central
+#Central [![Build Status](https://travis-ci.org/Macrow/Central.png)](https://travis-ci.org/Macrow/Central)
 Central旨在提供简单的用户系统，该系统包括了注册、登陆、发送短信，产生提醒等基本功能，并和基于用户系统的Mountable Engine挂接。
 
 ##功能简介
