@@ -2,11 +2,11 @@
 .center
   %h3= @message.title
   .message_info
-    = "发件人：#{link_to @message.sender.name, [:admin, @message.sender]}".html_safe
+    = "发件人：#{display_user_link(@message.sender, admin: true)}".html_safe
     - if @message.receiver_ids_string.include?(',')
       %span.receivers= "收件人：#{link_to_function "共#{@message.receiver_ids_string.split(',').count}人", "show_all_receivers('#{@message.receiver_ids_string}');"}".html_safe
     - else
-      = "收件人：#{link_to @message.receiver.name, [:admin, @message.receiver]}".html_safe
+      = "收件人：#{display_user_link(@message.receiver, admin: true)}".html_safe
     = "发送时间：#{@message.created_at.to_s(:db)}"
 #all_receivers
 #loading Loading...

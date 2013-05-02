@@ -47,7 +47,7 @@ module ApplicationHelper
     if user
       link_to user.name, (options[:admin] ? [:admin, user] : user)
     else
-      content_tag :span, '该用户已删除', class: 'label'
+      content_tag :span, '该用户已被删除', class: 'label'
     end
   end
 end

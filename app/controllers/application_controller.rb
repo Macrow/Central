@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
   def captcha_on?
     captcha_on = Settings.captcha_on == 1 ? true : false
     fail_count = Settings.fail_count
-    captcha_on || (session[:fail_count] || 0) >= fail_count
+    captcha_on || ((session[:fail_count] || 0).to_i >= fail_count.to_i)
   end
   
   def active_users

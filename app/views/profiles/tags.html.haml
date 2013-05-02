@@ -1,5 +1,6 @@
 = simple_form_for current_user, url: profile_path, method: 'put' do |f|
   %h4 我的标签
+  = content_tag :div, '', id: 'tag_splitter', data: {splitter: User::TAG_SPLITTER}
   #user_tags= render partial: 'tag', collection: current_user.tag_names
   %hr
   %h4 可用标签

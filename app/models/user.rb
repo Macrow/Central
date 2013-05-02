@@ -2,7 +2,7 @@
 class User < ActiveRecord::Base
   include ActionView::Helpers::UrlHelper
   SEX = [['保密', '保密'], ['男', '男'], ['女', '女']]
-  TAG_SPLITTER = '#$@' # also used in users.js.coffee
+  TAG_SPLITTER = '#$@'
   ACTIVITY_COUNT_TIME = 5.hours
   ONLINE_COUNT_TIME = 10.minutes
   attr_accessor :login, :remember, :password_origin, :captcha, :crop_x, :crop_y, :crop_w, :crop_h

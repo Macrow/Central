@@ -25,6 +25,7 @@
       = f.input :score
     #tab5.tab-pane
       %h4 用户标签
+      = content_tag :div, '', id: 'tag_splitter', data: {splitter: User::TAG_SPLITTER}
       #user_tags= render partial: 'profiles/tag', collection: @user.tag_names
       %hr
       %h4 可用标签

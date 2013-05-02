@@ -57,9 +57,10 @@ class AvatarCropper
 
 # Tag Selector
 class TagSelector
-  constructor: (@text_field_box_id = '#user_tag_text', @tagged_class = 'btn-info', @splitter = '#$@', @max_tag_count = 3) ->
+  constructor: (@text_field_box_id = '#user_tag_text', @tagged_class = 'btn-info', @max_tag_count = 3) ->
     $('#list_tags a').on 'click', @update_list_tags
     $('#user_tags').on 'click', 'a', @update_user_tags
+    @splitter = $('#tag_splitter').data('splitter')
     
   update_list_tags: (e) =>
     event.preventDefault()
