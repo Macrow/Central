@@ -1,4 +1,4 @@
-= link_to_function '返回', 'history.go(-1);', class: 'btn'
+= link_to '返回', 'javascript:window.history.go(-1);', class: 'btn'
 %br
 %br
 = render partial: 'profiles/card', locals: { user: @user, tags: @user.tag_names }

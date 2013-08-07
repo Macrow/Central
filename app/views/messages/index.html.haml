@@ -25,7 +25,7 @@
               = display_user_link(message.receiver)
           %td= message.created_at.to_s(:db)
           %td
-            = link_to '删除', message, method: :delete, remote: true, confirm: '确定删除该提醒？'
+            = link_to '删除', message, method: :delete, remote: true, data: { confirm: '确定删除该提醒？' }
   .pagination= will_paginate @messages
 - else
   .no_content 无内容

@@ -3,8 +3,8 @@ require 'spec_helper'
 
 feature "后台管理 #提醒" do
   before(:each) do
-    @admin = FactoryGirl.create(:user, name: 'admin', admin: true)
-    @user4 = FactoryGirl.create(:user, name: 'user-4')
+    @admin = create(:user, name: 'admin', admin: true)
+    @user4 = create(:user, name: 'user-4')
     (1..3).to_a.each do |n|
       eval <<-CODE
         @user#{n} = FactoryGirl.create(:user, name: 'user-#{n}')

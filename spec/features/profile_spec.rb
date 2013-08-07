@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 feature "用户资料和头像" do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { create(:user) }
   let(:image) { Rails.root.join('spec', 'support', 'test_image.jpg') }
   
   before(:each) do

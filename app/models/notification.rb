@@ -1,15 +1,13 @@
 # -*- encoding : utf-8 -*-
 class Notification < ActiveRecord::Base
   attr_accessor :receiver_names, :send_to_all, :receivers
-  attr_accessible :content, :read
-  attr_accessible :content, :read, :receiver_names, :send_to_all, as: :admin
   belongs_to :user
   before_validation :update_users_to_send
   validates_presence_of :content
   
-  scope :unread, where(read: false)
-  scope :read, where(read: true)
-  default_scope order('id DESC')
+  scope :unread, -> { where(read: false) }
+  scope :read, -> { where(read: true) }
+  default_scope { order('id DESC') }
   
   def send_notifications
     if valid?
@@ -23,7 +21,7 @@ class Notification < ActiveRecord::Base
   
   class << self
     def read_all(user_id, ids)
-      update_all({read: true}, {user_id: user_id, id: ids})
+      where(user_id: user_id, id: ids).update_all(read: true)
     end
     
     def group_destroy(ids)
@@ -37,7 +35,7 @@ class Notification < ActiveRecord::Base
   
   def update_users_to_send
     if send_to_all == '1' # send to all
-      self.receivers = User.all
+      self.receivers = User.all.to_a
       self.receivers.delete(user)
     elsif receiver_names # group send or single send
       errors.add(:receiver_names, '请填写接收人') and return if receiver_names.empty?      

@@ -3,7 +3,7 @@ require 'spec_helper'
 
 feature "用户登陆" do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = create(:user)
     visit login_path
   end
 
@@ -41,14 +41,14 @@ feature "用户登陆" do
     fill_in '用户名称/邮箱地址', with: 'somebody'
     fill_in '密码', with: @user.password
     click_button '登陆'
-    page.should have_content('登陆信息错误')
+    page.should have_content('用户尚未注册')
   end
 
   scenario "用错误密码登陆" do
     fill_in '用户名称/邮箱地址', with: @user.name
     fill_in '密码', with: 'other password'
     click_button '登陆'
-    page.should have_content('登陆信息错误')
+    page.should have_content('密码错误')
   end
   
   scenario "验证码开启后，不填写验证码登陆" do

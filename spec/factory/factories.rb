@@ -4,6 +4,7 @@ FactoryGirl.define do
     sequence(:name) { |n| "user-#{n}" }
     email  { "#{name}@163.com" }
     password 'Secret'
+    password_confirmation { |u| u.password }
   end
   
   factory :group do

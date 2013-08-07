@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
   end
   
   def update
-    if current_user.update_attributes(params[:user])
+    if current_user.update_attributes(user_params)
       redirect_to profile_path, notice: '更新个人资料成功！'
     else
       flash.now[:error] = '发生错误！'
@@ -29,7 +29,7 @@ class ProfilesController < ApplicationController
   end
   
   def update_avatar
-    if params[:user].present? && current_user.update_attributes(params[:user])
+    if params[:user].present? && current_user.update_attributes(user_params)
       if params[:cropping_avatar]
         redirect_to profile_path, notice: '头像更新成功！'
       else
@@ -46,11 +46,17 @@ class ProfilesController < ApplicationController
   end
   
   def update_password
-    if current_user.update_password(params[:user])
+    if current_user.update_password(user_params)
       redirect_to profile_path, notice: '更新密码成功！'
     else
       flash.now[:error] = '发生错误！'
       render 'edit_password'
     end
+  end
+  
+  private
+  
+  def user_params
+    params.require(:user).permit!
   end
 end

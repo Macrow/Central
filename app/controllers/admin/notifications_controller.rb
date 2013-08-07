@@ -15,7 +15,7 @@ module Admin
     end
     
     def create
-      @notification = current_user.notifications.build(params[:notification], as: :admin)
+      @notification = current_user.notifications.build(params.require(:notification).permit!)
       if @notification.send_notifications
         redirect_to admin_notifications_path, notice: '提醒发送成功！'
       else

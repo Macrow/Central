@@ -29,7 +29,7 @@ module Admin
     def create
       @user = User.new
       @user.admin = params[:user].delete(:admin)
-      @user.assign_attributes(params[:user])
+      @user.assign_attributes(params.require(:user).permit!)
       if @user.save
         redirect_to admin_users_path, notice: '用户创建成功！'
       else
@@ -51,7 +51,7 @@ module Admin
         params[:user].delete(:password)
         params[:user].delete(:password_confirmation)
       end
-      if @user.update_attributes(params[:user])
+      if @user.update_attributes(params.require(:user).permit!)
         redirect_to admin_users_path, notice: '用户信息更新成功！'
       else
         @tags = Tag.order('id DESC').each { |tag| tag.tagged = true if @user.tag_names.map(&:name).include?(tag.name) }

@@ -3,9 +3,9 @@ require 'spec_helper'
 
 feature "后台管理 #短消息" do
   before(:each) do
-    @user1 = FactoryGirl.create(:user, name: 'user-1')
-    @user2 = FactoryGirl.create(:user, name: 'user-2')
-    @admin = FactoryGirl.create(:user, name: 'admin', admin: true)
+    @user1 = create(:user, name: 'user-1')
+    @user2 = create(:user, name: 'user-2')
+    @admin = create(:user, name: 'admin', admin: true)
     (1..3).to_a.each do |n|
       eval <<-CODE
         @msg#{n} = @admin.messages.build(title: 'msg-#{n}', content: 'content-#{n}')

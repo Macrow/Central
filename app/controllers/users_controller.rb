@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user].merge!(register_ip: request.ip))
+    @user = User.new(user_params)
     if check_captcha_valid(@user) && @user.save
       reset_fail_count
       cookies[:auth_token] = @user.auth_token
@@ -39,5 +39,9 @@ class UsersController < ApplicationController
   
   def send_sign_up_email
     Settings.send_register_email == 1
+  end
+  
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :captcha).merge!(register_ip: request.ip)
   end
 end

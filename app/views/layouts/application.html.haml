@@ -9,8 +9,8 @@
     /[if lt IE 9]
       %script{src: "http://html5shim.googlecode.com/svn/trunk/html5.js", type: "text/javascript"}
     = csrf_meta_tags
-    = stylesheet_link_tag "application", :media => "all"
-    = javascript_include_tag "application"
+    = stylesheet_link_tag "application", :media => "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
     %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
   %body
     = render 'layouts/navbar'

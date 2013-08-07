@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe UserMailer do
   describe "重置密码" do
-    let(:user) { FactoryGirl.create(:user, password_reset_token: '') }
+    let(:user) { create(:user, password_reset_token: '') }
     let(:mail) { UserMailer.password_reset(user) }
     
     it "发送重置密码的地址" do

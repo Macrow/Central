@@ -1,8 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Score
-  extend ActiveModel::Translation
-  include ActiveModel::Conversion  
-  include ActiveModel::Validations
+  include ActiveModel::Model
   attr_accessor :receiver_names, :receivers, :score, :send_to_all
   
   def initialize(attributes = {})

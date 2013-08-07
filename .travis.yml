@@ -1,8 +1,8 @@
 rvm:
-  - 1.9.3
-  
-script: "rspec"
+  - 2.0
 
 before_script:
   "cp config/database.yml.sqlite3.example config/database.yml"
   "rake db:migrate db:test:prepare"
+  
+script: "rspec"

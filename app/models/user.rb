@@ -6,14 +6,13 @@ class User < ActiveRecord::Base
   ACTIVITY_COUNT_TIME = 5.hours
   ONLINE_COUNT_TIME = 10.minutes
   attr_accessor :login, :remember, :password_origin, :captcha, :crop_x, :crop_y, :crop_w, :crop_h
-  attr_accessible :email, :name, :password, :password_confirmation, :password_origin, :login, :remember, :captcha
-  attr_accessible :sex, :birthday, :location, :home_url, :sign, :description, :register_ip, :last_login_ip, :last_login_at
-  attr_accessible :avatar, :crop_x, :crop_y, :crop_w, :crop_h, :tag_text, :group_ids, :score
   validates_presence_of :name, :email, on: :create
   validates_uniqueness_of :name, :email, case_sensitive: false, on: :create
-  validates_length_of :name, within: 3..10, if: :name
-  validates_length_of :password, within: 6..20, if: :password
-  validates_confirmation_of :password, if: :password
+  validates_length_of :name, within: 3..10, if: lambda { |m| m.name.present? }
+  validates_confirmation_of :password, if: lambda { |m| m.password.present? }
+  validates_presence_of :password, on: :create
+  validates_presence_of :password_confirmation, if: lambda { |m| m.password.present? }
+  validates_length_of :password, within: 6..20, if: lambda { |m| m.password.present? }
   validates :email, email_format: { message: '邮箱格式错误', on: :create }
   before_create :save_login_info_after_create # set in before_create callback, for less db query
   before_create { generate_token(:auth_token) }
@@ -27,26 +26,39 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :groups
   mount_uploader :avatar, AvatarUploader
   acts_as_taggable
-  has_secure_password
+  has_secure_password validations: false
   
   def update_password(attributes)
     if authenticate(attributes[:password_origin])
-      update_attributes(attributes)
+      update_password_without_authenticate(attributes)
     else
       errors.add(:password_origin)
       false
     end
   end
   
+  def update_password_without_authenticate(attributes)
+    if attributes[:password] == '' && attributes[:password_confirmation] == ''
+      errors.add(:password)
+      false
+    else
+      update_attributes(attributes)
+    end
+  end
+  
   def authenticate_with_login
     user = User.find_by_name_or_email(login)
-    if user && user.authenticate(password)
+    if user.present? && user.authenticate(password)
       user.last_login_ip = self.last_login_ip
       user.last_login_at = Time.zone.now
       user.activate
       user.auth_token
     else
-      errors.add(:login, '登陆信息错误！')
+      if user.present?
+        errors.add(:password, '登录密码错误！')
+      else
+        errors.add(:login, '该用户尚未注册！')
+      end
       nil
     end
   end
@@ -137,7 +149,7 @@ class User < ActiveRecord::Base
   
   class << self
     def find_by_name_or_email(login)
-      where('name = ? or email = ?', login, login).first
+      where('name = ? OR email = ?', login, login).first
     end
     
     def from_omniauth(auth)

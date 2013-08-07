@@ -15,7 +15,7 @@ module Admin
     end
         
     def create
-      @message = current_user.messages.build(params[:message], as: :admin)
+      @message = current_user.messages.build(message_params)
       if @message.save_and_send
         redirect_to admin_messages_path, notice: '短信发送成功！'
       else
@@ -32,6 +32,12 @@ module Admin
     def group_destroy
       @ids = params[:submit_ids].split(',')
       Message.group_destroy(@ids)
+    end
+    
+    private
+    
+    def message_params
+      params.require(:message).permit!
     end
   end
 end

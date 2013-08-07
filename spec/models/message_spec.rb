@@ -4,7 +4,7 @@ require 'spec_helper'
 describe Message do
   before(:each) do
     (1..5).to_a.each do |n|
-      eval("@user#{n} = FactoryGirl.create(:user, name: 'user-#{n}')")
+      eval("@user#{n} = create(:user, name: 'user-#{n}')")
       eval("@user#{n}.messages.count.should == 0")
     end
   end

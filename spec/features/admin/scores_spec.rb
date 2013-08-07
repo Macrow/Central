@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 feature "后台管理 #积分" do
-  let(:admin) { FactoryGirl.create(:user, name: 'admin', admin: true) }
+  let(:admin) { create(:user, name: 'admin', admin: true) }
   
   before(:each) do
     (1..5).each do |n|

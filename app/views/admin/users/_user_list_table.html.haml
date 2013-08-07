@@ -32,7 +32,7 @@
           %td= content_tag(:span, '是', class: 'label label-important') if user.admin
           %td
             = link_to '编辑', edit_admin_user_path(user)
-            = link_to '删除', [:admin, user], method: :delete, remote: true, confirm: '确定删除？' unless user == current_user
+            = link_to '删除', [:admin, user], method: :delete, remote: true, data: { confirm: '确定删除？' } unless user == current_user
   .pagination= will_paginate @users
 - else
   .no_content 无内容

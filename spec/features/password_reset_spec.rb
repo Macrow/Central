@@ -4,7 +4,7 @@ require 'spec_helper'
 feature "重置密码" do
   describe "发送邮件" do
     before(:each) do
-      @user = FactoryGirl.create(:user)
+      @user = create(:user)
       visit login_path
       click_link '忘记密码'
     end
@@ -26,7 +26,7 @@ feature "重置密码" do
       click_button '发送重置密码邮件'
       page.should have_content('密码重置邮件已经发送')
       current_path.should == root_path
-      # last_email.to.should include(@user.email)
+      last_email.to.should include(@user.email)
     end
   end
   
@@ -43,7 +43,7 @@ feature "重置密码" do
       end
       fill_in '确认密码', with: ''
       click_button '重置密码'
-      page.should have_content('密码过短')
+      page.should have_content('密码是无效的')
     end
     
     scenario "密码过短" do
@@ -77,7 +77,7 @@ feature "重置密码" do
       fill_in '用户名称/邮箱地址', with: @user.name
       fill_in '密码', with: @user.password
       click_button '登陆'
-      page.should have_content('登陆信息错误')
+      page.should have_content('登录密码错误')
       
       fill_in '用户名称/邮箱地址', with: @user.name
       fill_in '密码', with: new_password

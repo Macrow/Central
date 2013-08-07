@@ -5,10 +5,10 @@ class PasswordResetsController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user])
+    @user = User.new(params.require(:user).permit(:email))
     user = User.where(email: @user.email).first
     if user
-      user.delay.send_password_reset_email
+      user.send_password_reset_email # FIXME: need delay something
       redirect_to root_path, notice: '密码重置邮件已经发送！'
     else
       @user.errors.add(:email, '无法核实您的邮箱地址，请确认是否用该邮件地址注册！')
@@ -18,15 +18,14 @@ class PasswordResetsController < ApplicationController
   end
   
   def edit
-    @user = User.where(password_reset_token: params[:id]).first
+    @user = User.where(password_reset_token: params.require(:id)).first
     redirect_to root_path unless @user
   end
   
   def update
-    @user = User.where(password_reset_token: params[:user].delete(:password_reset_token)).first
+    @user = User.where(params.require(:user).permit(:password_reset_token)).first
     if @user && @user.can_reset_password?
-      @user.assign_attributes(params[:user])
-      if @user.save
+      if @user.update_password_without_authenticate(params.require(:user).permit(:password, :password_confirmation))
         redirect_to root_path, notice: '密码重置成功！请用新密码登陆'
       else
         flash.now[:error] = '发生错误！'

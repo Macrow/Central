@@ -102,6 +102,17 @@ feature "用户注册" do
     end
     fill_in '确认密码', with: ''
     click_button '注册'
+    page.should have_content('密码不能为空字符')
+  end
+  
+  scenario "填写密码过短" do
+    fill_in '用户名称', with: name
+    fill_in '邮箱地址', with: email
+    within('.user_password') do
+      fill_in '密码', with: '123'
+    end
+    fill_in '确认密码', with: '123'
+    click_button '注册'
     page.should have_content('密码过短')
   end
 

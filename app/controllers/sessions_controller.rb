@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user].merge!(last_login_ip: request.ip))
+    @user = User.new(user_params.merge!(last_login_ip: request.ip))
     if check_captcha_valid(@user) && (auth_token = @user.authenticate_with_login)
       if @user.remember == '1'
         cookies.permanent[:auth_token] = auth_token
@@ -48,5 +48,9 @@ class SessionsController < ApplicationController
   
   def weibo_on
     Settings.sign_in_with_weibo == 1
-  end  
+  end
+  
+  def user_params
+    params.require(:user).permit(:login, :password, :remember, :captcha)
+  end
 end

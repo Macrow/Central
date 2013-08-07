@@ -1,27 +1,26 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '4.0.0'
 
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'haml-rails'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-  gem 'bootstrap-sass', '~> 2.2.2.0'
-  gem 'compass-rails'
-end
+# assets
+gem 'sass-rails',   '~> 4.0.0'
+gem 'haml-rails'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'uglifier', '>= 1.0.3'
+gem 'bootstrap-sass'
 
+gem 'turbolinks'
 gem 'jquery-rails'
+
 gem 'bcrypt-ruby', '~> 3.0.0'
-gem 'simple_form'
+gem 'simple_form', '>= 3.0.0.rc'
 gem 'magic_encoding'
 gem 'easy_captcha'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'will_paginate'
-gem 'real_settings'
+gem 'real_settings', github: 'Macrow/real_settings'
 gem 'validates_email_format_of'
-gem 'delayed_job_active_record'
 
 # omniauth
 gem 'omniauth-github'
@@ -30,7 +29,7 @@ gem 'omniauth-weibo-oauth2'
 
 gem 'chinese_cities'
 gem 'acts-as-taggable-on'
-gem 'ransack'
+gem 'ransack', github: 'ernie/ransack'
 
 group :development do
   gem 'sqlite3'
@@ -48,10 +47,5 @@ group :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'launchy'
-  gem 'database_cleaner'
-  gem 'spork'
-  gem 'rb-fsevent'
-  gem 'guard-rspec'
-  gem 'guard-spork'
-  gem 'ruby_gntp'
+  gem 'database_cleaner', '<= 1.0.1' # locked for sqlite3
 end

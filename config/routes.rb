@@ -15,15 +15,15 @@ Central::Application.routes.draw do
   get  'users/:id' => 'users#show',   as: 'user'
     
   # current user
-  get 'profile'                 => 'profiles#show',            as: 'profile'
-  get 'profile/edit'            => 'profiles#edit',            as: 'edit_profile'
-  put 'profile'                 => 'profiles#update',          as: 'update_profile'
-  get 'profile/tags'            => 'profiles#tags',            as: 'tags'
-  get 'profile/edit_avatar'     => 'profiles#edit_avatar',     as: 'edit_avatar'
-  get 'profile/crop_avatar'     => 'profiles#crop_avatar',     as: 'crop_avatar'
-  put 'profile/update_avatar'   => 'profiles#update_avatar',   as: 'update_avatar'
-  get 'profile/edit_password'   => 'profiles#edit_password',   as: 'edit_password'
-  put 'profile/update_password' => 'profiles#update_password', as: 'update_password'
+  get   'profile'                 => 'profiles#show',            as: 'profile'
+  get   'profile/edit'            => 'profiles#edit',            as: 'edit_profile'
+  put   'profile'                 => 'profiles#update',          as: 'update_profile'
+  get   'profile/tags'            => 'profiles#tags',            as: 'tags'
+  get   'profile/edit_avatar'     => 'profiles#edit_avatar',     as: 'edit_avatar'
+  get   'profile/crop_avatar'     => 'profiles#crop_avatar',     as: 'crop_avatar'
+  patch 'profile/update_avatar'   => 'profiles#update_avatar',   as: 'update_avatar'
+  get   'profile/edit_password'   => 'profiles#edit_password',   as: 'edit_password'
+  put   'profile/update_password' => 'profiles#update_password', as: 'update_password'
   
   # watching
   resources :relationships, only: [:create, :destroy]
@@ -32,8 +32,8 @@ Central::Application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
   
   # omniauth
-  match '/auth/:provider/callback', to: 'sessions#create_from_omniauth'
-  match '/auth/failure', to: redirect('/')
+  get '/auth/:provider/callback', to: 'sessions#create_from_omniauth'
+  get '/auth/failure', to: redirect('/')
   
   # messages & notifications
   resources :messages do

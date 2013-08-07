@@ -1,17 +1,17 @@
 # -*- encoding : utf-8 -*-
 require 'spec_helper'
 
-feature "站内短信与提醒", js: true do
-  let(:sender) { FactoryGirl.create(:user, name: 'sender') }
-  let(:receiver) { FactoryGirl.create(:user, name: 'receiver') }
+feature "站内短信与提醒" do
+  let(:sender) { create(:user, name: 'sender') }
+  let(:receiver) { create(:user, name: 'receiver') }
 
   def login_as(user)
     visit logout_path
     visit login_path
-    fill_in '用户名', with: user.name
+    fill_in '用户名称', with: user.name
     fill_in '密码', with: user.password
     click_button '登陆'
-    page.should have_content('成功')
+    page.should have_content('成功')    
     visit profile_path
   end
   
@@ -103,8 +103,8 @@ feature "站内短信与提醒", js: true do
     end
     page.should have_content(sender.name)
   end
-    
-  scenario "删除提醒" do
+  
+  scenario "删除提醒", js: true do
     login_as receiver
     within('.nav.nav-tabs') do
       click_link '站内提醒'
@@ -116,10 +116,10 @@ feature "站内短信与提醒", js: true do
     page.should have_content('成功')
   end
 
-  scenario "关注了某人或者取消关注 产生提醒" do
+  scenario "关注了某人或者取消关注 产生提醒", js: true do
     sender.watching(receiver)
     login_as receiver
-    within('#notifications a') do
+    within('#notifications a', visible: false) do
       page.should have_content('2')
     end
     within('.nav.nav-tabs') do
@@ -138,7 +138,7 @@ feature "站内短信与提醒", js: true do
     page.should have_content('成功')
       
     login_as receiver
-    within('#notifications a') do
+    within('#notifications a', visible: false) do
       page.should have_content('1')
     end
     within('.nav.nav-tabs') do

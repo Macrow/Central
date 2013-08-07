@@ -13,7 +13,7 @@
           %td.group_operation= check_box_tag "thread_checkbox", notification.id
           %td= index + 1 + current_page
           %td= simple_format notification.content
-          %td= link_to '删除', notification, method: :delete, remote: true, confirm: '确定删除该提醒？'
+          %td= link_to '删除', notification, method: :delete, remote: true, data: { confirm: '确定删除该提醒？' }
   - if action_name == 'index'
     .pagination= will_paginate @notifications
   - elsif action_name == 'unread' && @notifications.length >= 10

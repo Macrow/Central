@@ -20,7 +20,7 @@
           %td= group.users.count
           %td
             = link_to '编辑', edit_admin_group_path(group)
-            = link_to '删除', [:admin, group], method: :delete, remote: true, confirm: '确定删除？'
+            = link_to '删除', [:admin, group], method: :delete, remote: true, data: { confirm: '确定删除？' }
   .pagination= will_paginate @groups
 - else
   .no_content 无内容

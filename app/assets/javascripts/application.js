@@ -18,4 +18,5 @@
 //= require bootstrap-datepicker
 //= require chosen.jquery
 //= require jquery.Jcrop
+//= require turbolinks
 //= require central

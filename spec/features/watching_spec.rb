@@ -1,9 +1,9 @@
 # -*- encoding : utf-8 -*-
 require 'spec_helper'
 
-feature "用户关注" do
+feature "用户关注", js: true do
   (1..5).to_a.each do |n|
-    eval("let(:user#{n}) { FactoryGirl.create(:user) }")
+    eval("let(:user#{n}) { create(:user) }")
   end
   
   before(:each) do
@@ -29,7 +29,7 @@ feature "用户关注" do
     page.should_not have_content('取消关注')
   end
   
-  scenario "已经关注后，查看该人，应显示取消关注", js: true do
+  scenario "已经关注后，查看该人，应显示取消关注" do
     watches
     visit user_path(user2)
     page.should have_content('取消关注')
@@ -37,7 +37,7 @@ feature "用户关注" do
     page.should have_content('取消关注')
   end
   
-  scenario "我关注的人 列表", js: true do
+  scenario "我关注的人 列表" do
     watches
     visit profile_path
     within('#watchings') do
@@ -46,7 +46,7 @@ feature "用户关注" do
     end
   end
   
-  scenario "哪些人关注了我 列表", js: true do
+  scenario "哪些人关注了我 列表" do
     watches
     visit logout_path
     visit login_path
@@ -71,7 +71,7 @@ feature "用户关注" do
     end
   end
   
-  scenario "取消关注功能", js: true do
+  scenario "取消关注功能" do
     watches
     visit profile_path
     visit user_path(user2)

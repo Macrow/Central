@@ -19,7 +19,7 @@ module Admin
     
     # create.js.haml
     def create
-      @tag = Tag.new(params[:tag])
+      @tag = Tag.new(params.require(:tag).permit!)
       @tag.save
     end
     

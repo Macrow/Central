@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe User do
   describe "内部函数测试" do
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { create(:user) }
     
     it "每次产生唯一的重置密码的字符串" do
       user.send_password_reset_email
@@ -28,6 +28,13 @@ describe User do
       user.password_reset_sent_at = 25.minutes.ago
       user.save!
       user.can_reset_password?.should be_false
+    end
+    
+    it "重置密码不能为空" do
+      user.password = ''
+      user.password_confirmation = ''
+      user.save
+      user.errors.should_not be_empty
     end
     
     it "凭借用户名称或者邮件找到用户" do

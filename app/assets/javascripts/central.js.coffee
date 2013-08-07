@@ -2,7 +2,12 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-jQuery ->
+$(document).on 'page:load', -> LoadScript()
+jQuery -> LoadScript()
+
+
+# Load all script
+LoadScript = ->
   # Avatar
   new AvatarCropper()
   
@@ -25,35 +30,13 @@ jQuery ->
       $('.tag_edit').removeClass('hide')
     else
       $('.tag_edit').addClass('hide')
-
-# Avatar
-class AvatarCropper
-  constructor: ->
-    $('#cropbox').Jcrop
-      aspectRatio: 1
-      setSelect: [0, 0, 250, 250]
-      onSelect: @update
-      onChage:  @update
-    
-  update: (c) =>
-    $('#user_crop_x').val(c.x)
-    $('#user_crop_y').val(c.y)
-    $('#user_crop_w').val(c.w)
-    $('#user_crop_h').val(c.h)
-    @updatePreview(c)
   
-  updatePreview: (c) =>
-    if parseInt(c.w) > 0
-      @updateBox(c, 'min_preview', 32)
-      @updateBox(c, 'mid_preview', 48)
-      @updateBox(c, 'max_preview', 96)
-      
-  updateBox: (c, box, size) =>
-    $("##{box}").css
-      width: Math.round(size/c.w * $('#cropbox').width()) + 'px',
-      height: Math.round(size/c.h * $('#cropbox').height()) + 'px',
-      marginLeft: '-' + Math.round(size/c.w * c.x) + 'px',
-      marginTop: '-' + Math.round(size/c.h * c.y) + 'px'
+  # Links binding
+  $('#show_all_users').click -> show_all_users()
+  $('#show_all_receivers').click -> show_all_receivers($('#show_all_receivers').data('ids'))
+
+# ------------------ splitter ---------------------
+
 
 # Tag Selector
 class TagSelector
@@ -112,6 +95,35 @@ class GroupOperator
       $('input[name=thread_checkbox]:visible').each -> ids.push(this.value) if this.checked
       $('input#submit_ids').val(ids);
       $('form#group_operation_form').submit()
+
+# Avatar
+class AvatarCropper
+  constructor: ->
+    $('#cropbox').Jcrop
+      aspectRatio: 1
+      setSelect: [0, 0, 250, 250]
+      onSelect: @update
+      onChage:  @update
+    
+  update: (c) =>
+    $('#user_crop_x').val(c.x)
+    $('#user_crop_y').val(c.y)
+    $('#user_crop_w').val(c.w)
+    $('#user_crop_h').val(c.h)
+    @updatePreview(c)
+  
+  updatePreview: (c) =>
+    if parseInt(c.w) > 0
+      @updateBox(c, 'min_preview', 32)
+      @updateBox(c, 'mid_preview', 48)
+      @updateBox(c, 'max_preview', 96)
+      
+  updateBox: (c, box, size) =>
+    $("##{box}").css
+      width: Math.round(size/c.w * $('#cropbox').width()) + 'px',
+      height: Math.round(size/c.h * $('#cropbox').height()) + 'px',
+      marginLeft: '-' + Math.round(size/c.w * c.x) + 'px',
+      marginTop: '-' + Math.round(size/c.h * c.y) + 'px'
 
 @flash_html = (key, title, content) -> "<div class='alert alert-#{key}'><a href='#', class='close' data-dismiss='alert'>×</a><strong>#{title}</strong> : #{content}</div>"
 

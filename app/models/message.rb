@@ -2,8 +2,6 @@
 class Message < ActiveRecord::Base
   include ActionView::Helpers::UrlHelper
   attr_accessor :receiver_names, :receiver_name, :send_to_all, :users_to_send
-  attr_accessible :content, :title, :inbox, :receiver_name
-  attr_accessible :content, :title, :inbox, :receiver_names, :send_to_all, as: :admin
   validates_presence_of :title, :content
   before_validation :update_users_to_send
   
@@ -11,8 +9,8 @@ class Message < ActiveRecord::Base
   belongs_to :sender, class_name: 'User', foreign_key: 'sender_id'
   belongs_to :receiver, class_name: 'User', foreign_key: 'receiver_ids_string' # trick for eager loading
   
-  scope :unread, where(read: false)
-  default_scope order('id DESC')
+  scope :unread, -> { where(read: false) }
+  default_scope { order('id DESC') }
       
   def read_once
     update_attribute(:read, true)
@@ -66,7 +64,7 @@ class Message < ActiveRecord::Base
   
   def update_users_to_send
     if send_to_all == '1' # send to all
-      self.users_to_send = User.all
+      self.users_to_send = User.all.to_a
       self.users_to_send.delete(user)
       self.receivers = users_to_send
     elsif receiver_names # group send

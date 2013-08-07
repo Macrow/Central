@@ -31,7 +31,7 @@
               = content_tag(:span, '群发', class: 'label label-important')
             - else
               = display_user_link(message.receiver, admin: true)
-          %td= link_to '删除', [:admin, message], method: :delete, remote: true, confirm: '确定删除？'
+          %td= link_to '删除', [:admin, message], method: :delete, remote: true, data: { confirm: '确定删除？' }
   .pagination= will_paginate @messages
 - else
   .no_content 无内容

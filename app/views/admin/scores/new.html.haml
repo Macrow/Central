@@ -5,4 +5,4 @@
   = f.input :score
   .form-actions
     = f.submit '发送', class: 'btn btn-primary'
-    = link_to_function '返回', 'history.go(-1);', class: 'btn'
+    = link_to '返回', 'javascript:window.history.go(-1);', class: 'btn'

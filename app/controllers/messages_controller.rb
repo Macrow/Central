@@ -22,7 +22,7 @@ class MessagesController < ApplicationController
   end
   
   def create
-    @message = current_user.messages.build(params[:message])
+    @message = current_user.messages.build(message_params)
     if @message.save_and_send
       redirect_to profile_path, notice: '消息发送成功！'
     else
@@ -44,5 +44,11 @@ class MessagesController < ApplicationController
   def group_destroy
     @ids = params[:submit_ids].split(',')
     Message.group_destroy(@ids)
+  end
+  
+  private
+  
+  def message_params
+    params.require(:message).permit(:receiver_name, :title, :content)
   end
 end
