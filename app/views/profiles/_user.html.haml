@@ -1,3 +1,3 @@
 .user_list
-  .img= link_to image_tag(user.avatar_url(:mid), class: 'img-rounded'), user
+  .img= link_to image_tag(user.avatar_file(:mid), class: 'img-rounded'), user
   .name= link_to content_tag(:span, user.name, class: 'label label-info'), user

@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 module Admin
   class UsersController < BaseController
-    before_filter :get_groups, only: [:new, :create, :edit, :update]
+    before_action :get_groups, only: [:new, :create, :edit, :update]
     
     def index
       @q = User.search(params[:q])

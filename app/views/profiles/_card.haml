@@ -1,7 +1,7 @@
 .well
   %table.profile
     %tr
-      %td.avatar{'rowspan' => '3'}= image_tag user.avatar_url(:max), class: 'img-polaroid'
+      %td.avatar{'rowspan' => '3'}= image_tag user.avatar_file(:max), class: 'img-polaroid'
       %td.value= content_tag :h3, user.name
     %tr
       %td= mail_to user.email

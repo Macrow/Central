@@ -7,11 +7,13 @@ gem 'sass-rails',   '~> 4.0.0'
 gem 'haml-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.0.3'
-gem 'bootstrap-sass'
-
 gem 'turbolinks'
 gem 'jquery-rails'
 
+# Bootstrap v3
+gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
+
+# Misc
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'magic_encoding'

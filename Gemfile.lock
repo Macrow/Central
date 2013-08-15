@@ -14,6 +14,14 @@ GIT
       activerecord (>= 3.0)
       polyamorous (~> 0.6.0)
 
+GIT
+  remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
+  revision: 5c9f5607359d91cb18fe02ad9d3a5acb2e85a418
+  branch: 3
+  specs:
+    bootstrap-sass (3.0.0.0)
+      sass (~> 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -47,8 +55,6 @@ GEM
     arel (4.0.0)
     atomic (1.1.12)
     bcrypt-ruby (3.0.1)
-    bootstrap-sass (2.3.2.1)
-      sass (~> 3.2)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -237,7 +243,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   bcrypt-ruby (~> 3.0.0)
-  bootstrap-sass
+  bootstrap-sass!
   capybara
   carrierwave
   chinese_cities

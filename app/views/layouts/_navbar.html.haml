@@ -12,7 +12,7 @@
         %ul.nav.pull-right
           - if current_user
             = render 'profiles/user_drop_menu'
-            %li= link_to '后台管理', admin_root_path if current_user.admin
+            %li= link_to content_tag(:span, '后台管理', class: 'label label-important'), admin_root_path if current_user.admin
             %li= link_to '退出', logout_path
           - else
             %li= link_to '登陆', login_path

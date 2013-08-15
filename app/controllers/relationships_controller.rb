@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class RelationshipsController < ApplicationController
-  before_filter :authorize
+  before_action :authorize
   
   def create
     @user = User.find(params[:id])

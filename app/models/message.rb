@@ -10,6 +10,8 @@ class Message < ActiveRecord::Base
   belongs_to :receiver, class_name: 'User', foreign_key: 'receiver_ids_string' # trick for eager loading
   
   scope :unread, -> { where(read: false) }
+  scope :inbox, -> { where(inbox: true) }
+  scope :outbox, -> { where(inbox: false) }
   default_scope { order('id DESC') }
       
   def read_once

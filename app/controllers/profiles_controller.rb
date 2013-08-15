@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class ProfilesController < ApplicationController
-  before_filter :authorize
+  before_action :authorize
   
   def show
   end

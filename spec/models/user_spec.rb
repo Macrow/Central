@@ -44,10 +44,10 @@ describe User do
     end
     
     it "系统提供用户默认头像" do
-      user.avatar_url.should_not be_nil
-      user.avatar_url(:min).should_not be_nil
-      user.avatar_url(:mid).should_not be_nil
-      user.avatar_url(:max).should_not be_nil
+      user.avatar_file.should_not be_nil
+      user.avatar_file(:min).should_not be_nil
+      user.avatar_file(:mid).should_not be_nil
+      user.avatar_file(:max).should_not be_nil
     end
     
     it "积分更新" do

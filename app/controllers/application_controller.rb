@@ -2,9 +2,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   layout :set_layout
-  after_filter :reset_last_captcha_code! # reset captcha code after each request for security
+  before_action :save_user_activity_status
+  after_action :reset_last_captcha_code! # reset captcha code after each request for security
   helper_method :current_user, :active_users, :captcha_on?, :current_page, :unread_messages_count, :unread_notifications_count
-  before_filter :save_user_activity_status
 
   protected
   
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
   
   def unread_messages_count
-    @unread_messages_count ||= current_user.inbox_messages.unread.count
+    @unread_messages_count ||= current_user.messages.inbox.unread.count
   end
   
   def unread_notifications_count

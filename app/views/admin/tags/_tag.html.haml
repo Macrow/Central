@@ -5,4 +5,4 @@
       = '×'
       = User.tagged_with(tag.name).count
       %br
-    .center.tag_edit.hide= link_to content_tag(:span, '删除', class: 'label label-important'), [:admin, tag], method: 'delete', remote: true, confirm: '确认删除？'
+    .center.tag_edit.hide= link_to content_tag(:span, '删除', class: 'label label-important'), [:admin, tag], method: 'delete', remote: true, data: {confirm: '确认删除？'}

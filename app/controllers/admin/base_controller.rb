@@ -2,7 +2,7 @@
 module Admin
   class BaseController < ::ApplicationController
     layout 'admin'
-    before_filter :authorize_admin
+    before_action :authorize_admin
   
     private
   

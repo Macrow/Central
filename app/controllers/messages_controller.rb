@@ -1,18 +1,18 @@
 # -*- encoding : utf-8 -*-
 class MessagesController < ApplicationController
-  before_filter :authorize
+  before_action :authorize
   
   def index
-    @messages = current_user.inbox_messages.includes(:sender).page(params[:page]).per_page(per_page_count)
+    @messages = current_user.messages.inbox.includes(:sender).page(params[:page]).per_page(per_page_count)
   end
   
   def unread
-    @messages = current_user.inbox_messages.unread.includes(:sender).page(params[:page]).per_page(per_page_count)
+    @messages = current_user.messages.inbox.unread.includes(:sender).page(params[:page]).per_page(per_page_count)
     render 'index'    
   end
   
   def outbox
-    @messages = current_user.outbox_messages.includes(:sender).page(params[:page]).per_page(per_page_count)
+    @messages = current_user.messages.outbox.includes(:sender).page(params[:page]).per_page(per_page_count)
     render 'index'
   end
   

@@ -29,8 +29,8 @@ describe Message do
     msg.save_and_send
     msg.valid?.should == true
     @user1.messages.count.should == 2
-    @user1.inbox_messages.count.should == 1
-    @user1.outbox_messages.count.should == 1
+    @user1.messages.inbox.count.should == 1
+    @user1.messages.outbox.count.should == 1
   end
   
   it "填入名称群发信息" do
