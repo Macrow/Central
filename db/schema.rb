@@ -1,4 +1,4 @@
-# -*- encoding : utf-8 -*-
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20130217164146) do
     t.datetime "failed_at"
     t.string   "locked_by"
     t.string   "queue"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20130217164146) do
   create_table "groups", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "groups_users", id: false, force: true do |t|
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 20130217164146) do
     t.integer  "user_id"
     t.string   "receiver_ids_string"
     t.boolean  "read",                default: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "messages", ["receiver_ids_string", "user_id"], name: "index_messages_on_receiver_ids_string_and_user_id"
@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(version: 20130217164146) do
     t.text     "content"
     t.boolean  "read",       default: false
     t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id"
@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 20130217164146) do
     t.text     "value"
     t.integer  "target_id"
     t.string   "target_type"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "settings", ["target_type", "target_id", "key"], name: "index_settings_on_target_type_and_target_id_and_key", unique: true
@@ -127,8 +127,8 @@ ActiveRecord::Schema.define(version: 20130217164146) do
     t.integer  "activity_count",         default: 0
     t.integer  "score",                  default: 0
     t.boolean  "admin",                  default: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true

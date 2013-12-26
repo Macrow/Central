@@ -1,3 +1,4 @@
+%h4= "#{action_name == 'unread' ? '未读提醒' : '已读提醒'}"
 = render partial: 'shared/group_operation_tools', locals: { url: group_destroy_notifications_path }
 - if @notifications.length > 0
   %table.table

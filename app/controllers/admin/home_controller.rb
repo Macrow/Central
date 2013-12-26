@@ -15,7 +15,7 @@ module Admin
     
     def update
       Settings.update_settings(params[:settings])
-      redirect_to edit_admin_home_path, notice: '设置更新成功！'
+      redirect_to edit_admin_home_path, success: '设置更新成功！'
     end
   end
 end

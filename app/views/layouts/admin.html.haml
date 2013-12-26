@@ -17,6 +17,6 @@
     #main.container
       #flash= display_flash
       .row
-        .span2= render 'sidebar'
-        .span10= yield
+        .col-md-2= render 'sidebar'
+        .col-md-10= yield
     = render 'layouts/footer'

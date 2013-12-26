@@ -1,3 +1,4 @@
+%h4= "#{action_name == 'outbox' ? '发件箱' : '收件箱'}"
 = render partial: 'shared/group_operation_tools', locals: { url: group_destroy_messages_path }
 - if @messages.length > 0
   %table.table
@@ -26,6 +27,6 @@
           %td= message.created_at.to_s(:db)
           %td
             = link_to '删除', message, method: :delete, remote: true, data: { confirm: '确定删除该提醒？' }
-  .pagination= will_paginate @messages
+  .pagination.pull-right= will_paginate @messages, renderer: BootstrapPagination::Rails
 - else
   .no_content 无内容

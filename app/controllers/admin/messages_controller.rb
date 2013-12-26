@@ -17,9 +17,9 @@ module Admin
     def create
       @message = current_user.messages.build(message_params)
       if @message.save_and_send
-        redirect_to admin_messages_path, notice: '短信发送成功！'
+        redirect_to admin_messages_path, success: '短信发送成功！'
       else
-        flash.now[:error] = '发生错误！'
+        flash.now[:danger] = '发生错误！'
         render 'new'
       end
     end

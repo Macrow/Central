@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
   
   def unread
     @messages = current_user.messages.inbox.unread.includes(:sender).page(params[:page]).per_page(per_page_count)
-    render 'index'    
+    render 'index'
   end
   
   def outbox
@@ -24,9 +24,9 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.messages.build(message_params)
     if @message.save_and_send
-      redirect_to profile_path, notice: '消息发送成功！'
+      redirect_to profile_path, success: '消息发送成功！'
     else
-      flash.now[:error] = '发生错误！'
+      flash.now[:danger] = '发生错误！'
       render 'new'
     end
   end

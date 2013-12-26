@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :save_user_activity_status
   after_action :reset_last_captcha_code! # reset captcha code after each request for security
   helper_method :current_user, :active_users, :captcha_on?, :current_page, :unread_messages_count, :unread_notifications_count
+  add_flash_types :success, :info, :warning, :danger
 
   protected
   
@@ -51,7 +52,7 @@ class ApplicationController < ActionController::Base
   end
   
   def authorize
-    redirect_to root_path, notice: '操作前请登录！' unless current_user
+    redirect_to root_path, warnning: '操作前请登录！' unless current_user
   end
   
   def save_user_activity_status

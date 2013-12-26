@@ -17,9 +17,9 @@ module Admin
     def create
       @notification = current_user.notifications.build(params.require(:notification).permit!)
       if @notification.send_notifications
-        redirect_to admin_notifications_path, notice: '提醒发送成功！'
+        redirect_to admin_notifications_path, success: '提醒发送成功！'
       else
-        flash.now[:error] = '发生错误！'
+        flash.now[:danger] = '发生错误！'
         render 'new'
       end
     end

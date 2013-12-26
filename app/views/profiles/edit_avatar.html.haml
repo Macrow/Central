@@ -1,3 +1,3 @@
-= simple_form_for current_user, url: update_avatar_path, html: { class: 'form-horizontal' } do |f|
+= simple_form_for current_user, url: update_avatar_path do |f|
   = f.input :avatar, as: 'file', label: '选择图像文件'
-  .form-actions= f.submit '上传并更新头像', class: 'btn btn-primary'
+  = f.submit '上传并更新头像', class: 'btn btn-primary'

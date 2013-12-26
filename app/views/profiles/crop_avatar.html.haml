@@ -13,12 +13,13 @@
       #min= image_tag(current_user.avatar.url, id: 'min_preview')
 %hr
 = image_tag(current_user.avatar.url, id: 'cropbox')
-= simple_form_for current_user, url: update_avatar_path, html: { id: 'coords', class: 'form-horizontal' } do |f|
+= simple_form_for current_user, url: update_avatar_path, html: { id: 'coords' } do |f|
   = f.input :crop_x, as: 'hidden'
   = f.input :crop_y, as: 'hidden'
   = f.input :crop_w, as: 'hidden'
   = f.input :crop_h, as: 'hidden'
   = hidden_field_tag :cropping_avatar, true
-  .form-actions= f.submit '裁剪', class: 'btn btn-primary btn-large'
+  %hr
+  = f.submit '裁剪', class: 'btn btn-primary btn-large'
 
 

@@ -16,10 +16,10 @@ class SessionsController < ApplicationController
         cookies[:auth_token] = auth_token
       end
       reset_fail_count
-      redirect_to root_path, notice: '登陆成功！'
+      redirect_to root_path, success: '登陆成功！'
     else
       increase_fail_count
-      flash.now[:error] = '发生错误！'
+      flash.now[:danger] = '发生错误！'
       render 'new'
     end
   end
@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
 
   def destroy
     cookies.delete :auth_token
-    redirect_to root_path, notice: '您已经成功退出！'
+    redirect_to root_path, info: '您已经成功退出！'
   end
 
   private

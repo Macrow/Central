@@ -65,3 +65,10 @@ config.action_mailer.smtp_settings = {
   :enable_starttls_auto => true
 }
 ```
+
+###TODO
+
+忘记密码功能也应该判断错误次数，然后加入验证码
+注册时，在用户键入用户名和邮箱的时候自动验证是否合法，可选择在失去焦点时验证
+加载所有用户时，如果网站地址是“http://localhost:3000/#”时，会出现加载完毕立即转到主页的错误
+UI改善

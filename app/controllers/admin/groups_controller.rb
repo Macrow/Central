@@ -14,9 +14,9 @@ module Admin
       @group = Group.new
       @group.assign_attributes(params.require(:group).permit!)
       if @group.save
-        redirect_to admin_groups_path, notice: '用户组创建成功！'
+        redirect_to admin_groups_path, success: '用户组创建成功！'
       else
-        flash.now[:error] = '发生错误！'
+        flash.now[:danger] = '发生错误！'
         render 'new'
       end
     end
@@ -37,7 +37,7 @@ module Admin
       if @group.update_attributes(params.require(:group).permit!)
         redirect_to admin_groups_path, notice: '用户组信息更新成功！'
       else
-        flash.now[:error] = '发生错误！'
+        flash.now[:danger] = '发生错误！'
         render 'edit'
       end
     end

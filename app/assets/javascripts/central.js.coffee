@@ -53,7 +53,7 @@ class TagSelector
         $('#user_tags').append("<a href='#' class='btn #{@tagged_class}'>#{$(e.target).html()}</a>")
         $(e.target).addClass(@tagged_class)
       else
-        $('#flash').html(flash_html('notice', '注意', "最多只能选择#{@max_tag_count}个标签！"));
+        $('#flash').html(flash_html('warning', '注意', "最多只能选择#{@max_tag_count}个标签！"));
   
   update_user_tags: (e) =>
     event.preventDefault()

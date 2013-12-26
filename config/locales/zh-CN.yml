@@ -214,9 +214,10 @@ zh-CN:
       submit: "储存%{model}"
 
   flash:
-    error: 错误
-    info: 信息
-    notice: 注意
+    success: 操作成功
+    info: 请注意
+    warning: 警告
+    danger: 错误
   
   activerecord:
     models:

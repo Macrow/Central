@@ -3,7 +3,7 @@ module ApplicationHelper
   def display_flash
     output = ActiveSupport::SafeBuffer.new
     flash.each do |key, msg|
-      output << content_tag(:div, (link_to('×', '#', class: 'close', 'data-dismiss' => 'alert') + content_tag(:strong, t("flash.#{key}")) + ' : ' + msg), class: "alert alert-#{key}")
+      output << content_tag(:div, (link_to('×', '#', class: 'close', 'data-dismiss' => 'alert', 'aria-hidden' => 'true') + content_tag(:strong, t("flash.#{key}")) + ' : ' + msg), class: "alert alert-#{key} fade in")
     end
     output.html_safe
   end
@@ -17,7 +17,7 @@ module ApplicationHelper
   end
   
   def badge_icon(number)
-    content_tag(:span, number, class: "badge #{'badge-info' if number > 0}")
+    content_tag(:span, number, class: "badge")
   end
   
   def tab_link_to(name, link, c_name, a_names = nil)
@@ -38,7 +38,7 @@ module ApplicationHelper
   def display_labels(labels)
     output = ActiveSupport::SafeBuffer.new
     labels.each do |label|
-      output << content_tag(:span, label, class: 'label')
+      output << content_tag(:span, label, class: 'label label-default')
     end
     output.html_safe
   end
@@ -47,7 +47,7 @@ module ApplicationHelper
     if user
       link_to user.name, (options[:admin] ? [:admin, user] : user)
     else
-      content_tag :span, '该用户已被删除', class: 'label'
+      content_tag :span, '该用户已被删除', class: 'label label-default'
     end
   end
 end

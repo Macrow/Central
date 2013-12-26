@@ -221,9 +221,10 @@ en:
       submit: 'Save %{model}'        
 
   flash:
-    error: Error
+    success: Success
     info: Information
-    notice: Notice 
+    warning: Warning
+    danger: Error
     
   activerecord:
     models:

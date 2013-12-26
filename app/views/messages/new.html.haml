@@ -1,5 +1,6 @@
-= simple_form_for @message, html: { class: 'form-horizontal' } do |f|
+%h4 新建短信
+= simple_form_for @message do |f|
   = f.input :receiver_name, input_html: { class: 'span4' }
   = f.input :title, input_html: { class: 'span4' }
   = f.input :content, input_html: { class: 'span4', rows: '8' }
-  .form-actions= f.submit '发送', class: 'btn btn-primary'
+  = f.submit '发送', class: 'btn btn-primary'

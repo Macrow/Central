@@ -1,0 +1,193 @@
+body {
+  padding-top: 60px;
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+footer {
+  .info {
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+    padding: 8px;
+    text-align: right;
+    color: #ccc;
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+.pagination {
+  text-align: right;
+}
+
+#loading {
+  display: none;
+}
+
+#avatar_preview, #avatar_old {
+  img {
+    max-width: none;
+    vertical-align: top;
+  }
+  #min, #mid, #max {
+    display: inline-block;
+    overflow: hidden;
+  }
+  #min {
+    width: 32px;
+    height: 32px;
+  }
+  #mid {
+    width: 48px;
+    height: 48px;
+  }
+  #max {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+#user_tags, #list_tags, #all_users, #all_tags {
+  a {
+    margin: 5px;
+  }
+}
+
+#all_tags {
+  .tag_info {
+    display: inline-block;
+    padding: 2px 5px;
+    margin: 3px;
+  }
+  .tag_used {
+    border: 1px dashed #aaa;
+  }
+  .hide {
+    display: none;
+  }
+}
+
+.edit_tools {
+  text-align: right;
+  margin: 10px;
+}
+
+#login_form {
+  margin: 0 auto;
+  width: 500px;
+  .forgot_password {
+    margin-left: 10px;
+    display: inline;
+    a {
+      vertical-align: bottom;
+    }
+  }
+}
+
+#register_form {
+  margin: 0 auto;
+  width: 500px;
+}
+
+#omniauth {
+  text-align: right;
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+table.profile {
+  width: 100%;
+  tr {
+    border-bottom: 1px dashed #ccc;
+  }
+  tr:last-child {
+    border-bottom: none;
+  }
+  td {
+    padding: 5px;
+  }
+  .avatar {
+    width: 120px;
+  }
+  .key {
+    text-align: right;
+    vertical-align: top;
+  }
+  .value {
+    text-align: left;
+  }
+  .tags {
+    padding-bottom: 20px;
+    span.label {
+      margin: 0 3px;
+    }
+  }
+}
+
+.user_list {
+  display: inline-block;
+  margin: 8px;
+}
+
+#buttons {
+  text-align: center;
+  .message_button, .watching_button {
+    margin: 0 auto;
+    width: 150px;
+    display: inline-block;
+  }
+}
+
+.no_content {
+  line-height: 80px;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.group_operation_tools {
+  display: none;
+  background: #EEE;
+  border-top: dashed 1px #DDD;
+  border-bottom: dashed 1px #DDD;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+}
+
+.center {
+  text-align: center;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.message_info {
+  margin-bottom: 5px;
+  font-size: 0.9em;
+}
+
+ul.staticstic {
+  li {
+    border-bottom: #ccc dashed 1px;
+    line-height: 3em;
+  }
+  li:last-child {
+    border: none;
+  }
+}
+
+#search_form {
+  text-align: right;
+}
+
+.footer {
+  a {
+    color: #ccc;
+  }
+}

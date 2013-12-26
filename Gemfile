@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.2'
 
 # assets
 gem 'sass-rails',   '~> 4.0.0'
@@ -10,12 +10,13 @@ gem 'uglifier', '>= 1.0.3'
 gem 'turbolinks'
 gem 'jquery-rails'
 
-# Bootstrap v3
-gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
+# Bootstrap
+gem 'bootstrap-sass', '~> 3.0.3.0'
+gem 'will_paginate-bootstrap'
 
 # Misc
-gem 'bcrypt-ruby', '~> 3.0.0'
-gem 'simple_form', '>= 3.0.0.rc'
+gem 'bcrypt-ruby'
+gem 'simple_form'
 gem 'magic_encoding'
 gem 'easy_captcha'
 gem 'carrierwave'
@@ -31,7 +32,7 @@ gem 'omniauth-weibo-oauth2'
 
 gem 'chinese_cities'
 gem 'acts-as-taggable-on'
-gem 'ransack', github: 'ernie/ransack'
+gem 'ransack'
 
 group :development do
   gem 'sqlite3'

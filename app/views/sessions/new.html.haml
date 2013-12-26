@@ -1,15 +1,14 @@
 #login_form.well
   %h2.center 登陆
-  = simple_form_for @user, url: login_path, method: 'post', html: { class: 'form-horizontal' } do |f|
+  = simple_form_for @user, url: login_path, method: 'post' do |f|
     = f.input :login
     = f.input :password
     = f.input :captcha, label: '验证码', hint: captcha_tag if captcha_on?
     = f.input :remember, as: 'boolean', input_html: { class: 'checkbox' }
-    .form-actions
-      = f.submit '登陆', class: 'btn btn-large btn-primary'
-      .forgot_password= link_to '忘记密码？', new_password_reset_path
+    = f.submit '登陆', class: 'btn btn-large btn-primary'
+    .forgot_password= link_to '忘记密码？', new_password_reset_path
   #omniauth
     = '您还可以通过下列方式登陆：' if github_on || qq_on || weibo_on
-    = link_to 'Github', '/auth/github', class: 'label' if github_on
-    = link_to '腾讯QQ', '/auth/qq_connect', class: 'label' if qq_on
-    = link_to '新浪微博', '/auth/weibo', class: 'label' if weibo_on
+    = link_to 'Github', '/auth/github', class: 'label label-default' if github_on
+    = link_to '腾讯QQ', '/auth/qq_connect', class: 'label label-default' if qq_on
+    = link_to '新浪微博', '/auth/weibo', class: 'label label-default' if weibo_on

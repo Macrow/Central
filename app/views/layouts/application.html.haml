@@ -17,8 +17,8 @@
     #main.container
       #flash= display_flash
       .row
-        .span4= render partial: 'profiles/card', locals: { user: current_user, tags: current_user.tag_names }
-        .span8
+        .col-md-4= render partial: 'profiles/card', locals: { user: current_user, tags: current_user.tag_names }
+        .col-md-8
           = render 'profiles/nav'
           = yield
     = render 'layouts/footer'

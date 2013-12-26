@@ -74,6 +74,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-    "#{model.name}_#{Time.zone.now.to_i}.png".downcase if original_filename
+    "#{model.id}_#{model.name}.png".downcase if original_filename
   end
 end

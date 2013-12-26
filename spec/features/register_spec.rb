@@ -33,7 +33,7 @@ feature "用户注册" do
     page.should have_content('用户名称不能为空')
   end
   
-  scenario "用户名过段或过长(中文)" do
+  scenario "用户名过短或过长(中文)" do
     fill_in '用户名称', with: '中文'
     fill_in '邮箱地址', with: email
     within('.user_password') do
@@ -42,7 +42,7 @@ feature "用户注册" do
     fill_in '确认密码', with: password
     click_button '注册'
     page.should have_content('过短')
-    fill_in '用户名称', with: '很长的中文很长的中文中'
+    fill_in '用户名称', with: '很长的中文很长的中文中很长的中文很长的中文中'
     within('.user_password') do
       fill_in '密码', with: password
     end
@@ -51,7 +51,7 @@ feature "用户注册" do
     page.should have_content('过长')
   end
 
-  scenario "用户名过段或过长(英文)" do
+  scenario "用户名过短或过长(英文)" do
     fill_in '用户名称', with: 'ab'
     fill_in '邮箱地址', with: email
     within('.user_password') do
@@ -60,7 +60,7 @@ feature "用户注册" do
     fill_in '确认密码', with: password
     click_button '注册'
     page.should have_content('过短')
-    fill_in '用户名称', with: 'aaaaabbbbbc'
+    fill_in '用户名称', with: 'abcdefghijklmnopqrstuvwxyz'
     within('.user_password') do
       fill_in '密码', with: password
     end

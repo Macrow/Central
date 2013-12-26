@@ -24,6 +24,6 @@
           %td= notification.created_at.to_s(:db)
           %td= simple_format notification.content
           %td= link_to '删除', [:admin, notification], method: :delete, remote: true, data: { confirm: '确定删除？' }
-  .pagination= will_paginate @notifications
+  .pagination.pull-right= will_paginate @notifications, renderer: BootstrapPagination::Rails
 - else
   .no_content 无内容

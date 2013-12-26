@@ -12,9 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap/tab
-//= require bootstrap/alert
-//= require bootstrap/dropdown
+//= require bootstrap
 //= require bootstrap-datepicker
 //= require chosen.jquery
 //= require jquery.Jcrop

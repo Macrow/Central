@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   
   def new
     if current_user
-      redirect_to root_path, notice: '您已经登陆，如需注册，请退出后再作尝试。'
+      redirect_to root_path, info: '您已经登陆，如需注册，请退出后再作尝试。'
     else
       @user = User.new
     end
@@ -22,10 +22,10 @@ class UsersController < ApplicationController
       reset_fail_count
       cookies[:auth_token] = @user.auth_token
       UserMailer.delay.register_confirmation(@user) if send_sign_up_email
-      redirect_to root_path, notice: '注册成功！您已经登陆！'
+      redirect_to root_path, success: '注册成功！您已经登陆！'
     else
       increase_fail_count
-      flash.now[:error] = '发生错误！'
+      flash.now[:danger] = '发生错误！'
       render 'new'
     end
   end
