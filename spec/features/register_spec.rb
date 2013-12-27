@@ -151,6 +151,19 @@ feature "用户注册" do
     page.should have_content('邮箱地址已经被使用')
   end
   
+  scenario "用户名和邮箱地址输入空格可被忽略" do
+    User.create!(name: name, email: email, password: password, password_confirmation: password)
+    fill_in '用户名称', with: "  #{name}  "
+    fill_in '邮箱地址', with: "  #{email}  "
+    within('.user_password') do
+      fill_in '密码', with: password
+    end
+    fill_in '确认密码', with: password
+    click_button '注册'
+    page.should have_content('用户名称已经被使用')
+    page.should have_content('邮箱地址已经被使用')
+  end
+  
   scenario "验证码开启后注册" do
     5.times { click_button '注册' }
     page.should have_content('验证')

@@ -6,4 +6,9 @@
     = f.input :password
     = f.input :password_confirmation
     = f.input :captcha, label: '验证码', hint: captcha_tag if captcha_on?
-    = f.submit '注册', class: 'btn btn-large btn-primary'
+    = f.submit '注册', class: 'btn btn-primary btn-block'
+  %hr
+  .pull-right
+    = link_to '忘记密码？', new_password_reset_path
+    = link_to '已有账号？', login_path
+    

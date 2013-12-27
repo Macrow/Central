@@ -1,11 +1,11 @@
 .row
-  .span4
+  .col-md-6
     %h4 之前的头像
     #avatar_old
       #max= image_tag(current_user.avatar.url(:max))
       #mid= image_tag(current_user.avatar.url(:mid))
       #min= image_tag(current_user.avatar.url(:min))
-  .span4
+  .col-md-6
     %h4 裁剪后的头像
     #avatar_preview
       #max= image_tag(current_user.avatar.url, id: 'max_preview')

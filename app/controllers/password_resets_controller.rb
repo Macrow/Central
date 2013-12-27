@@ -5,21 +5,22 @@ class PasswordResetsController < ApplicationController
   end
   
   def create
-    @user = User.new(params.require(:user).permit(:email))
-    user = User.where(email: @user.email).first
-    if user
+    @user = User.new(params.require(:user).permit(:email, :captcha))
+    if check_captcha_valid(@user) && (user = User.where(email: @user.email).first)
       user.send_password_reset_email # FIXME: need delay something
+      reset_fail_count
       redirect_to root_path, info: '密码重置邮件已经发送！'
     else
-      @user.errors.add(:email, '无法核实您的邮箱地址，请确认是否用该邮件地址注册！')
+      @user.errors.add(:email, '无法核实您的邮箱地址，请确认是否用该邮件地址注册！') if check_captcha_valid(@user)
+      increase_fail_count
       flash.now[:danger] = '发生错误！'
-      render 'new'
+      render 'new'      
     end
   end
   
   def edit
     @user = User.where(password_reset_token: params.require(:id)).first
-    redirect_to root_path unless @user
+    redirect_to root_path, danger: '对不起，您的密码重置链接已经过期，请重新申请！' unless @user
   end
   
   def update

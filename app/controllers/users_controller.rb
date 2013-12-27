@@ -42,6 +42,6 @@ class UsersController < ApplicationController
   end
   
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :captcha).merge!(register_ip: request.ip)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :captcha).merge!(register_ip: request.ip, name: params[:user][:name].try(:strip), email: params[:user][:email].try(:strip))
   end
 end

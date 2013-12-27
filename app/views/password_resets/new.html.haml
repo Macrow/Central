@@ -2,4 +2,10 @@
   %h2.center 发送重置密码邮件
   = simple_form_for @user, url: password_resets_path, method: 'post' do |f|
     = f.input :email
-    = f.submit '发送重置密码邮件', class: 'btn btn-large btn-danger'
+    = f.input :captcha, label: '验证码', hint: captcha_tag if captcha_on?
+    = f.submit '发送重置密码邮件', class: 'btn btn-block btn-danger'
+  %hr
+  .pull-right
+    = link_to '注册新账号？', register_path
+    = link_to '直接登录', login_path
+  %br

@@ -25,16 +25,17 @@ feature "用户关注", js: true do
 
   scenario "查看自己，应该没有关注链接可以使用" do
     visit user_path(user1)
-    page.should_not have_content('关注')
-    page.should_not have_content('取消关注')
+    page.should have_link('退出')
+    page.should_not have_link('关注')
+    page.should_not have_link('取消关注')
   end
   
   scenario "已经关注后，查看该人，应显示取消关注" do
     watches
     visit user_path(user2)
-    page.should have_content('取消关注')
+    page.should have_link('取消关注')
     visit user_path(user5)
-    page.should have_content('取消关注')
+    page.should have_link('取消关注')
   end
   
   scenario "我关注的人 列表" do

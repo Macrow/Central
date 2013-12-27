@@ -51,6 +51,6 @@ class SessionsController < ApplicationController
   end
   
   def user_params
-    params.require(:user).permit(:login, :password, :remember, :captcha)
+    params.require(:user).permit(:login, :password, :remember, :captcha).merge!(login: params[:user][:login].try(:strip))
   end
 end
